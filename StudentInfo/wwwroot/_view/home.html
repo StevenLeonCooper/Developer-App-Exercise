@@ -1,0 +1,20 @@
+﻿<h1>Student Information View</h1>
+
+    <table class="student-table">
+        <tr>
+            <th>Student Id</th>
+            <th>School Code</th>
+            <th>Name</th>
+            <th>Contacts</th>
+        </tr>
+        {{#.}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{schoolCode}}</td>
+            <td>{{firstName}} {{lastName}}</td>
+            <td><button type="button" data-click="getContacts" data-student-id="{{id}}">View</button></td>
+        </tr>
+        {{/.}}
+    </table>
+
+
