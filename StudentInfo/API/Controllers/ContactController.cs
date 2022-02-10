@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StudentInfo.API.Models;
+using StudentInfo.API.Data;
+using StudentInfo.API.Data.DataAccess;
+using System.Data.SqlClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,25 +29,20 @@ namespace StudentInfo.API.Controllers
         {
             // Code will get list of contacts arelated to student ID
 
-            List<Contact> Output = new List<Contact>();
 
-            int max = 5;
-            int i;
-            Random rand = new Random();
+            string conn = DatabaseConnection.DefaultConnection;
 
-            for(i = 0; i < max; i++)
-            {
-                Output.Add(new Contact()
-                {
-                    Id = rand.Next(0, 1000).ToString(),
-                    FirstName = rand.Next(0, 1000).ToString(),
-                    LastName = rand.Next(0, 1000).ToString(),
-                    StudentId = id.ToString(),
-                    Relationship = "Relative"
-                });
-            }
+            object[] SqlParams = { id };
 
-            return Output;
+            SqlDataReader Reader = null;
+
+            Reader = SqlHelper.ExecuteReader(conn, "Get_Student_Contacts", SqlParams);
+
+            var result = ReaderTo<Contact>.Convert(Reader);
+
+            return result.ToList<Contact>();
+
+            
         }
 
         // POST api/<ContactController>

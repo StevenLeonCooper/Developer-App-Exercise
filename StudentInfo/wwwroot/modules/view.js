@@ -38,7 +38,7 @@ export class View {
 
 export class Partial extends View {
     constructor(name, settings) {
-        super(name, "_views/partials/", "html");
+        super(name, "_view/_partial/", "html");
         this.selector = settings.selector ?? `#partial_${name}`;
     }
 }

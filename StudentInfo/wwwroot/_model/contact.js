@@ -6,6 +6,7 @@ export class Contact extends Model {
     }
 
     byStudent(studentId) {
-        this.apiUrl = `api/contact/sid/${studentId}`
+        this.apiUrl = `api/contact/sid/${studentId}`;
+        return this;
     }
 }

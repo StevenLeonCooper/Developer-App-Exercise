@@ -22,14 +22,20 @@ const homeController = new Controller(homeView, studentModel);
 
 homeController.onClick("getContacts", (e) => {
 
+    console.log("activated");
+
     let source = e.target;
     let studentId = source.dataset.studentId;
-    let contacts = new Contact(studentId);
-    let contactsPartial = new Partial("Contacts");
+    let contacts = new Contact().byStudent(studentId);
+    let contactsPartial = new Partial("contact", {
+        selector: `#StudentContacts_${studentId}`
+    });
 
     (async () => {
 
         await contacts.import();
+
+        await contactsPartial.import();
 
         let data = contacts.export();
 

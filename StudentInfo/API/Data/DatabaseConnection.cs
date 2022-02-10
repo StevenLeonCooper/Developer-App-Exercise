@@ -15,8 +15,9 @@ namespace StudentInfo.API.Data
         {
             get
             {
-                string conn = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=StudentDB;";
-                conn += @"Integrated Security=True;Pooling=False;Connect Timeout=30";
+                string conn = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=StudentDB;
+                Persist Security Info=False;User ID=api;Password = SuperSecret321!;Pooling=False;
+                MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False";
                 return conn;
             }
         }
