@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace StudentInfo.API.Models
 {
-    public class Student
+    public class Student: Table
     {
+        public string StudentId { get; set; }
 
         public string Id { get; set; }
 

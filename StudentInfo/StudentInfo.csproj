@@ -7,10 +7,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="API\Data\" />
+    <PackageReference Include="ServiceStack" Version="6.0.2" />
+    <PackageReference Include="ServiceStack.Client" Version="6.0.2" />
+    <PackageReference Include="ServiceStack.Common" Version="6.0.2" />
+    <PackageReference Include="ServiceStack.Interfaces" Version="6.0.2" />
+    <PackageReference Include="ServiceStack.Text" Version="6.0.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
 </Project>

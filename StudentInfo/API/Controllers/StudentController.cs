@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StudentInfo.API.Models;
+using StudentInfo.API.Data;
+using StudentInfo.API.Data.DataAccess;
+using System.Data.SqlClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,31 +20,25 @@ namespace StudentInfo.API.Controllers
         [HttpGet]
         public List<Student> Get()
         {
-            List<Student> Output = new List<Student>();
+            string conn = DatabaseConnection.DefaultConnection;
 
-            int i;
-            int max = 5;
-            Random rand = new Random();
-            for(i = 0; i < max; i++)
-            {
-                Output.Add(new Student()
-                {
-                    Id = rand.Next(1000, 9999).ToString(),
-                    FirstName = rand.Next(0, 99999).ToString(),
-                    LastName = rand.Next(0, 99999).ToString(),
-                    SchoolCode = rand.Next(10000, 99999).ToString()
-                });
-            }
+            object[] SqlParams = Array.Empty<object>();
 
-            return Output;
+            SqlDataReader Reader = null;
+
+            Reader = SqlHelper.ExecuteReader(conn, "Get_Student_List", SqlParams);
+
+            var result = ReaderTo<Student>.Convert(Reader);
+
+            return result.ToList<Student>();
         }
 
         // GET api/<StudentController>/5
         [HttpGet("{id}")]
         public Student Get(int id)
         {
-            Student Output = new Student() { Id = "123", FirstName = "bob", LastName = "test", SchoolCode = "999" };
-            
+            //Student Output = new Student() { Id = "123", FirstName = "bob", LastName = "test", SchoolCode = "999" };
+            Student Output = new Student();
             return Output;
         }
 
