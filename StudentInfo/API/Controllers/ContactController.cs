@@ -7,7 +7,7 @@ using StudentInfo.API.Models;
 using StudentInfo.API.Data;
 using StudentInfo.API.Data.DataAccess;
 using System.Data.SqlClient;
-
+using Microsoft.Extensions.Configuration;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StudentInfo.API.Controllers
@@ -16,11 +16,11 @@ namespace StudentInfo.API.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
-        // GET: api/<ContactController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly string connection;
+
+        public ContactController(IConfiguration config)
         {
-            return new string[] { "value1", "value2" };
+            this.connection = DatabaseConnection.Default(config);
         }
 
         // GET api/<ContactController>/5
@@ -29,8 +29,7 @@ namespace StudentInfo.API.Controllers
         {
             // Code will get list of contacts arelated to student ID
 
-
-            string conn = DatabaseConnection.DefaultConnection;
+            string conn = this.connection;
 
             object[] SqlParams = { id };
 

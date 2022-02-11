@@ -70,5 +70,6 @@
     <None Include="Login.sql" />
     <None Include="DummyData_Student.sql" />
     <None Include="DummyData_Contact.sql" />
+    <Build Include="DB_Setup.sql" />
   </ItemGroup>
 </Project>

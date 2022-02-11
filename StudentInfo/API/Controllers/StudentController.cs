@@ -7,7 +7,7 @@ using StudentInfo.API.Models;
 using StudentInfo.API.Data;
 using StudentInfo.API.Data.DataAccess;
 using System.Data.SqlClient;
-
+using Microsoft.Extensions.Configuration;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StudentInfo.API.Controllers
@@ -16,11 +16,19 @@ namespace StudentInfo.API.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
+
+        private readonly string connection;
+
+        public StudentController(IConfiguration config)
+        {
+            this.connection = DatabaseConnection.Default(config);
+        }
+
         // GET: api/<StudentController>
         [HttpGet]
         public List<Student> Get()
         {
-            string conn = DatabaseConnection.DefaultConnection;
+            string conn = this.connection;
 
             object[] SqlParams = Array.Empty<object>();
 
