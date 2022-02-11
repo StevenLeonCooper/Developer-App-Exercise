@@ -95,6 +95,7 @@ GO
 CREATE OR ALTER PROCEDURE [dbo].[Get_Student_List]
 AS
 	SELECT * FROM student
+    ORDER BY [LastName] ASC
 RETURN 0
 
 
