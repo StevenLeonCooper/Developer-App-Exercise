@@ -17,6 +17,7 @@ The easiest way to setup the database here is to simply use the DB_Setup.sql scr
 3. ![Step 3](https://i.imgur.com/OTFIJ1X.png)
 
 Regardless of the method you choose, when you're done you should have the StudentDB Database along with its tables and stored procedures: 
+
 ![Tables Setup](https://i.imgur.com/Tcdoy6V.png)
 
 # Connection String Setup
