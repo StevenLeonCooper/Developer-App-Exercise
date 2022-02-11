@@ -1,25 +1,33 @@
-﻿<h1>Student Information View</h1>
-
+﻿<h2>Student Contact Information</h2>
+<section id="MainContent">
     <table class="student-table">
         <tr>
+            <th>Name</th>
             <th>Student Id</th>
             <th>School Code</th>
-            <th>Name</th>
+
             <th>Contacts</th>
         </tr>
         {{#.}}
-        <tr>
-            <td>{{studentId}}</td>
-            <td>{{schoolCode}}</td>
-            <td>{{firstName}} {{lastName}}</td>
-            <td><button type="button" data-action="getContacts" data-student-id="{{studentId}}">View</button></td>
-        </tr>
-        <tr>
-            <td>
+    <tr>
+        <td>{{firstName}} {{lastName}}</td>
+        <td>{{studentId}}</td>
+        <td>{{schoolCode}}</td>
+
+        <td><button class="view-button" 
+                    type="button" 
+                    data-target=".StudentContacts_{{studentId}}" 
+                    data-action="getContacts" 
+                    data-student-id="{{studentId}}" 
+                    data-state="new"
+                    data-alt-text="Hide">View</button></td>
+    </tr>
+        <tr class="StudentContacts_{{studentId}}">
+            <td colspan="4">
                 <div id="StudentContacts_{{studentId}}"></div>
             </td>
         </tr>
         {{/.}}
     </table>
 
-
+</section>

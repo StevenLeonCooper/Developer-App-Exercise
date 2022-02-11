@@ -49,9 +49,48 @@ export class EventManager {
 
     }
 
-    on(type, name, callback) {
-        this.actions[type][name] = callback;
+    _wrapCallback(callback) {
+
+        return function (event) {
+
+            let eventData = new EventData(event);
+
+            callback(eventData);
+        };
     }
 
 
+    on(type, name, callback) {
+
+
+        this.actions[type][name] = this._wrapCallback(callback);
+    }
+
+
+}
+
+export class EventData {
+    constructor(event) {
+        if (event instanceof EventData) return event;
+
+        this.element = document.body;
+
+        this.event = new Event("click");
+
+        this.target = document.body;
+
+        let actualTarget = document.querySelector(event.target?.dataset?.target);
+
+        let eData = {
+            element: event.target,
+            event: event,
+            targetElement: actualTarget
+        };
+
+        let dataSet = event.target?.dataset;
+
+        Object.assign(this, eData);
+
+        Object.assign(this, dataSet);
+    }
 }

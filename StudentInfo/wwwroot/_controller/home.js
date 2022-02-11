@@ -1,11 +1,12 @@
 ﻿import { Controller } from '../modules/controller.js';
+import { EventData } from '../modules/events.js';
 import { View, Partial } from '../modules/view.js';
 import { Student } from '../_model/student.js';
 import { Contact } from '../_model/contact.js';
 
 
 const studentModel = new Student();
-const homeView = new View("home");
+const homeView = new View("home", { css: true });
 const homeController = new Controller(homeView, studentModel);
 
 (async () => {
@@ -22,25 +23,66 @@ const homeController = new Controller(homeView, studentModel);
 
 homeController.onClick("getContacts", (e) => {
 
-    console.log("activated");
+    let eData = new EventData(e);
 
-    let source = e.target;
-    let studentId = source.dataset.studentId;
-    let contacts = new Contact().byStudent(studentId);
-    let contactsPartial = new Partial("contact", {
-        selector: `#StudentContacts_${studentId}`
-    });
+    let studentId = eData.studentId;
 
-    (async () => {
+    let state = eData.state;
 
-        await contacts.import();
+    function toggleText(eData) {
+        
+        let newText = eData.element.dataset.altText;
 
-        await contactsPartial.import();
+        eData.element.dataset.altText = eData.element.innerText;
 
-        let data = contacts.export();
+        eData.element.innerText = newText;
+    }
 
-        contactsPartial.render(data);
+    let action = {
+        new: () => {
+            let contacts = new Contact().byStudent(studentId);
 
-    })();
+            let contactsPartial = new Partial("contact", {
+                selector: `#StudentContacts_${studentId}`
+            });
+
+            (async () => {
+
+                await contacts.import();
+
+                await contactsPartial.import();
+
+                let data = contacts.export();
+
+                contactsPartial.render(data);
+
+                eData.element.dataset.state = "open";
+
+                toggleText(eData);
+
+            })();
+        },
+        open: () => {
+            
+            eData.targetElement.classList.toggle("no-display");
+
+            eData.element.dataset.state = "closed";
+
+            toggleText(eData);
+        },
+
+        closed: () => {
+
+            eData.targetElement.classList.toggle("no-display");
+
+            eData.element.dataset.state = "open";
+
+            toggleText(eData);
+        }
+    }
+
+    action[state]();
+
+
 
 });

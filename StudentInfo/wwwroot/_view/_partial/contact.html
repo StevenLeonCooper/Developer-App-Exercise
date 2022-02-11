@@ -1,15 +1,15 @@
 ﻿<table class="contact-table">
     <tr>
-        <th>Student Id</th>
         <th>Name</th>
         <th>Relationship</th>
+        <th>Mobile #</th>
         <th>Address</th>
     </tr>
     {{#.}}
 <tr>
-    <td>{{studentId}}</td>
     <td>{{firstName}} {{lastName}}</td>
     <td>{{relationship}}</td>
+    <td>{{mobile}}</td>
     <td>{{address}} {{city}}, {{state}} {{zip}}</td>
 </tr>
     {{/.}}

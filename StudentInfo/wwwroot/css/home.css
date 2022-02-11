@@ -1,0 +1,55 @@
+﻿#MainContent{
+    max-width:800px;
+    padding:5px;
+    margin: 0px auto;
+}
+table.student-table {
+    table-layout: fixed;
+    width: 100%;
+    border: 3px solid #A66;
+    border-radius: 10px;
+    border-spacing: 0;
+    box-shadow: 2px 2px 7px #666;
+}
+
+.student-table > tbody > tr:first-child {
+    color:white;
+    background-color: #C88;
+    border:1px solid red;
+    border-radius:5px;
+}
+
+.student-table th{
+    padding:8px;
+}
+
+.student-table td{
+    padding:3px;
+}
+
+table.student-table th, table.student-table td{
+    text-align:left;
+}
+
+
+table.contact-table{
+    table-layout:fixed;
+    width:100%;
+    border: 1px solid white;
+    border-radius:5px;
+    background-color:#DEEEDE;
+}
+
+.contact-table td, .contact-table th{
+    padding:3px;
+}
+
+button.view-button{
+    text-align:center;
+    font-weight:bold;
+    width:100%;
+    cursor:pointer;
+    background-color:#99AAEE;
+    border-radius:5px;
+    border: solid 1px #3366AA;
+}
