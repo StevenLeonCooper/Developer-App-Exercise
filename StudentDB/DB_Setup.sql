@@ -1,6 +1,23 @@
-﻿/* I know this is unconventional but I wanted this to be as simple as possible to set up
-    and slapping everyting in a big SQL script makes it pretty easy to setup the database
-    and test the app out. */
+﻿/* This script will set up everything from the DB to the tables as long as your 
+connection string is correct and you have some instance of SQL Server running.*/
+
+USE master
+
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'StudentDB')
+
+BEGIN
+
+  CREATE DATABASE StudentDB;
+
+END;
+
+GO
+
+USE StudentDB
+
+GO
 
 IF EXISTS (SELECT * FROM sysobjects WHERE name='contact' and xtype='U')
 
