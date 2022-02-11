@@ -17,6 +17,7 @@ The easiest way to setup the database here is to simply use the DB_Setup.sql scr
 3. ![Step 3](https://i.imgur.com/OTFIJ1X.png)
 
 Regardless of the method you choose, when you're done you should have the StudentDB Database along with its tables and stored procedures: 
+
 ![Tables Setup](https://i.imgur.com/Tcdoy6V.png)
 
 # Connection String Setup
@@ -27,6 +28,7 @@ The web app won't have access to your newly-created database unless you ensure i
 2. Navigate to *appsettings.json* in the _StudentInfo_ project: 
 
   ![App Settings](https://i.imgur.com/REu0fmF.png)
+
 3. Paste your connection string into one of the settings. The "DedfaultDB" settings has been left blank so you can use that one. Then make sure the "DefaultConnection" setting has a value that matches the setting name for your connection string (e.g. it should say "DefaultDB" if that's where you pasted your connection string). 
 
   ![Individual Settings](https://i.imgur.com/NHVnQOh.png)
